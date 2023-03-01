@@ -56,7 +56,7 @@ def chat():
     if request.method == 'POST':
         prompt = request.form['prompt']
         formatted_response = discussion(create_prompt(prompt))
-        print(formatted_response)
+        # print(formatted_response)
         return render_template("index.html", answer=formatted_response, prompt=prompt)
     else:
         return render_template("index.html")
