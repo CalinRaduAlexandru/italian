@@ -10,7 +10,7 @@ openai.api_key = os.getenv('api_key')
 
 app = Flask(__name__)
 
-@app.route('/chat', methods=['GET'])
+# @app.route('/', methods=['GET'])
 def create_prompt(user_input=""):
     prompt = f"""
     Per favore, fai la correzione e la traduzione in rumeno per il mio input e doppo che mi hai risposto, fai anche la traduzione per la tua risposta. Fa essatamente come negli esempi e non dimenticare di continuare la conversazione:
@@ -63,10 +63,10 @@ def chat():
 
 
 @app.route('/')
-def get_all_posts():
+def get_chat():
     return render_template("index.html")
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
 
