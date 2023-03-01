@@ -57,13 +57,9 @@ def chat():
         prompt = request.form['prompt']
         formatted_response = discussion(create_prompt(prompt))
         print(formatted_response)
-        return render_template("chat.html", answer=formatted_response, prompt=prompt)
+        return render_template("index.html", answer=formatted_response, prompt=prompt)
     else:
-        return render_template("chat.html")
-
-@app.route('/chat')
-def start_texting():
-    return render_template("chat.html", answer="formatted_response")
+        return render_template("index.html")
 
 
 @app.route('/')
