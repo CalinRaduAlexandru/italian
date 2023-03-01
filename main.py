@@ -13,7 +13,6 @@ openai.api_key = os.getenv('api_key')
 app = Flask(__name__)
 
 
-# @app.route('/', methods=['GET'])
 def create_prompt(user_input=""):
     prompt = f"""Seguendo esatto il formato del esempio, Per favore, usando al minimo 200 parole, fai la correzione e la traduzione in rumeno per il mio input e fai anche la traduzione per la tua risposta. Fa essatamente come negli esempi e non dimenticare di continuare la conversazione, il esempio:
 Il tuo testo corretto: "Voglio imparare l'italiano ma non so come fare." Traducerea în română: "Vreau să învăț italiana dar nu știu cum să fac asta.". Risponso: Capisco! Ci sono molte risorse online che puoi usare per imparare l'italiano. Quale tipo di aiuto cercavi? Raspuns: Am înțeles! Există multe resurse online pe care le puteți folosi pentru a învăța limba italiană. Ce fel de ajutor căutai?
