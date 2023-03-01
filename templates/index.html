@@ -8,17 +8,17 @@
     <link rel="shotrcut icon" href="{{url_for('static', filename='favicon.ico')}}">
 </head>
 <body>
-<h1 style="padding-top:100px; text-align:center;">🇮🇹 Învață italiana! 🇮🇹</h1>
+<h1 style="padding-top:100px; text-align:center;" class="header">🇮🇹 Învață italiana! 🇮🇹</h1>
 <form class="form" action="/andrea" method="post">
-    <span style="opacity:0.6;margin-bottom:24px; font-weight:light">Textul tău: {{prompt}}</span>
+    <span style="opacity:0.6;margin-bottom:24px; font-weight:light; line-height: 1.8;">Textul tău: {{prompt}}</span>
 <div>
     <input type="text" name="prompt" class="form__input" placeholder="Scrie-ți textul:">
     <button type="submit" class="form__button">Submit</button>
 </div>
-<div style="margin-top:40px;">{{ answer }}</div>
+<div class="answer" style="margin-top:40px; line-height: 1.8;">{{ answer }}</div>
 </form>
 </body>
 <footer>
-    <p>Made with ♥️ in London.</p>
+    <p style="text-align:center;">Made with ♥️ in Iași.</p>
 </footer>
 </html>
