@@ -2,10 +2,14 @@ from flask import Flask, render_template, request
 import openai
 import os
 from dotenv import load_dotenv
+import json
+import codecs
 
 
 def configure():
     load_dotenv()
+
+configure()
 
 
 openai.api_key = os.getenv('api_key')
@@ -13,48 +17,57 @@ openai.api_key = os.getenv('api_key')
 app = Flask(__name__)
 
 
-def create_prompt(user_input=""):
-    prompt = f"""Seguendo esatto il formato del esempio, Per favore, usando al minimo 200 parole, fai la correzione e la traduzione in rumeno per il mio input e fai anche la traduzione per la tua risposta. Fa essatamente come negli esempi e non dimenticare di continuare la conversazione, il esempio:
-Il tuo testo corretto: "Voglio imparare l'italiano ma non so come fare." Traducerea în română: "Vreau să învăț italiana dar nu știu cum să fac asta.". Risponso: Capisco! Ci sono molte risorse online che puoi usare per imparare l'italiano. Quale tipo di aiuto cercavi? Raspuns: Am înțeles! Există multe resurse online pe care le puteți folosi pentru a învăța limba italiană. Ce fel de ajutor căutai?
-Inizia correggendo questo testo e rispondi:
-     {user_input}
-    """
-    # prompt = f"""Exemplu de input: 'Sneakers Nike Jordan 1 Size(42.5)'
-    # Outputul pe care il astept de la tine este o descriere de prdous de 150 de cuvinte ca in exemplu de mai jos, incepe cu titlul:
-    # ### Titlul produsului ###
-    # Despre produsul Sneakers Nike Jordan 1 Size(42.5):\n
-    # ### Descrere produs ###
-    # Sneakers Nike Jordan 1 Size(42.5) sunt o alegere perfectă pentru cei care doresc să își completeze colecția cu o pereche de adidași de calitate superioară. Designul acestor sneakers este atemporal. Combinația de culori atrăgătoare fac din aceștia o alegere ideală atât pentru purtarea zilnică, cât și pentru ocazii speciale. Materialele de calitate premium ale Sneakers Nike Jordan 1 Size(42.5) asigură un confort maxim, iar talpa cu profil înalt oferă o aderență bună. Brandul Nike și logo-ul Jordan sunt simboluri recunoscute la nivel mondial și aduc un plus de stil și eleganță. Nu ratați ocazia de a vă procura acești sneakers unici si comozi!\n
-    # ### Descrere META ###
-    # Descriere meta de maxim 80 de caractere: Nike Jordan 1 Size(42.5) sunt ideali pentru pasionații de adidași de calitate superioară. Designul atemporal și culorile atrăgătoare fac diferența.
-    # Pe exact structura asta, fa-mi o descriere pentru: {user_input}
-    # """
-    return prompt
-
-
 def discussion(prompt):
-    data = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=prompt,
-        temperature=0.7,
-        max_tokens=1000,
-        top_p=1.0,
-        frequency_penalty=0.0,
-        presence_penalty=0.0
+    data = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "Creezi descrieri atrgatoare pentru produsele unui ecommerce"},
+            {"role": "user", "content": "Nike T-Shirt VI Dry"},
+            {"role": "assistant", "content": "Nike T-Shirt VI Dry este o tricou sportiv pentru bărbați, proiectat pentru a oferi confort și performanță maximă în timpul activităților fizice. Materialul Dry-FIT al tricoului este realizat dintr-un amestec de poliester și bumbac, care îndepărtează rapid transpirația de pe piele, menținându-te uscat și confortabil în timpul antrenamentului. Designul modern și elegant, împreună cu logo-ul Nike vizibil pe piept, îl fac un produs atractiv și potrivit pentru a fi purtat în afara sălii de sport. Cu o gamă variată de culori și mărimi disponibile, acest tricou Nike este o alegere excelentă pentru cei care doresc să se simtă confortabil și să arate bine în timpul antrenamentelor lor."},
+            {"role": "user", "content": f"{prompt}"}
+        ]
     )
-    processed_data = data['choices'][0]['text'].split(",")
-    new_data = '\n'.join(processed_data)
-    print(data)
+    # print(data)
+    data = data['choices'][0]['message']
 
-    return new_data
+    # Convert the dictionary to a JSON string
+    json_data = json.dumps(data)
+
+    # Decode the JSON string using codecs
+    decoded_data = codecs.decode(json_data, 'unicode_escape')
+
+    # Convert the decoded string back to a dictionary
+    decoded_dict = json.loads(decoded_data)
+
+    # Access the decoded text
+    decoded_text = decoded_dict['content']
+    print(decoded_text)
+
+    # data2 = openai.ChatCompletion.create(
+    #     model="gpt-3.5-turbo",
+    #     messages=[
+    #         {"role": "system", "content": f"Creaza-mi meta descriere de maxim 75 de caractere la textul acesta: {decoded_text}"},
+    #         {"role": "assistant",
+    #          "content": "Descoperă tricoul sportiv Nike T-Shirt VI Dry pentru bărbați! Materialul Dry-FIT îndepărtează rapid transpirația, menținându-te uscat și confortabil."},
+    #     ]
+    # )
+    # # print(data)
+    # meta = data2['choices'][0]['message']
+    # print(f"message is {meta}")
+    # json_meta = json.dumps(meta)
+    # decoded_meta = codecs.decode(json_meta, 'unicode_escape')
+    # decoded_dict_meta = json.loads(decoded_meta)
+    # decoded_meta = decoded_dict_meta['content']
+    # print(f"decoded txt {decoded_meta}")
+    #
+    return decoded_text
 
 
 @app.route('/andrea', methods=['GET', 'POST'])
 def chat():
     if request.method == 'POST':
         prompt = request.form['prompt']
-        formatted_response = discussion(create_prompt(prompt))
-        # print(formatted_response)
+        formatted_response = discussion(prompt)
         return render_template("index.html", answer=formatted_response, prompt=prompt)
     else:
         return render_template("index.html")
@@ -66,4 +79,14 @@ def get_chat():
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
+
+#
+# messages=[
+#             {"role": "system", "content": "Esti un profesor de italiana pentru incepatori si mereu raspunzi mai intai cum ar fi fost scris corect in italiana promptul meu anterior"},
+#             {"role": "user", "content": "Voglio imparare l'italiano ma non so come fare."},
+#             {"role": "assistant", "content": "Il tuo testo corretto: 'Voglio imparare l'italiano ma non so come fare.'. Certo, ci sono diversi modi in cui poi miglioare il tuo livello di italiano. Dimmi commo aiutarti! Traduzione: Sigur! Sunt diverse modalitati prin care poti sa iti imbunatatesti nivelul de italiana. Spune-mi cum te pot ajuta!"},
+#             {"role": "user", "content": "Molto bien, mi peace"},
+#             {"role": "assistant", "content": "Il tuo testo corretto: 'Molto bene, mi piace.'. Sono contento che ti piace la mia rispuesta Traduzione: Sunt incantat ca iti place raspunsul meu"},
+#             {"role": "user", "content": f"{prompt}"}
+#         ]

@@ -5,14 +5,14 @@
     <title>Italiano con Andrea</title>
     <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/styles.css">
-    <link rel="shotrcut icon" href="{{url_for('static', filename='favicon.ico')}}">
+    <link rel="shortcut icon" href="/static/favicon.ico">
 </head>
 <body>
-<h1 style="padding-top:100px; text-align:center;" class="header">🇮🇹 Învață italiana! 🇮🇹</h1>
+<h1 style="padding-top:100px; text-align:center;" class="header">Creeaza descrierea produsului</h1>
 <form class="form" action="/andrea" method="post">
-    <span style="opacity:0.6;margin-bottom:24px; font-weight:light; line-height: 1.8;">Textul tău: {{prompt}}</span>
+    <span style="opacity:0.6;margin-bottom:24px; font-weight:light; line-height: 1.8;">Introdu numele produsului: {{information}}</span>
 <div>
-    <input type="text" name="prompt" class="form__input" placeholder="Scrie-ți textul:">
+    <input type="text" name="prompt" class="form__input" placeholder="Numele produsului">
     <button type="submit" class="form__button">Submit</button>
 </div>
 <div class="answer" style="margin-top:40px; line-height: 1.8; font-size: 40px;">{{ answer }}</div>
