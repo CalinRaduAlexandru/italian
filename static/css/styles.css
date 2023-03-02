@@ -1,92 +1,151 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  line-height: 32px;
-}
-
 body {
- background: #f8f8f8;
- margin: 0;
- font-family: 'Raleway', sans-serif;
- -webkit-font-smoothing: antialiased;
-  color:#212121;
-  font-size: 30px;
-  line-height: 32px;
+  background-image: url("../shop3.png");
+  /* The image used */
+  background-color: #4C4C4B;
+  /* Used if the image is unavailable */
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  font-family: 'Poppins, sans-serif';
+}
+
+.header {
+  padding-top: 100px;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  line-height: 1.5;
+  font-weight: 900;
+}
+
+.container-fluid {
+  padding: 72px 10%;
 
 }
 
-span {
-    font-size: 50px;
-    line-height: 32px;
+.product-div {
+  background: rgb(59, 59, 59, 0.88);
+  padding: 20px;
+  border-radius: 8px 0 0 8px;
 }
 
-.answer {
-line-height: 32px;
-}
-
-.form {
-  width: 95%;
-  max-width: 978px;
+.form-div {
   display: flex;
   flex-direction: column;
-  align-self: center;
-  justify-content: center;
-  align-items: center;
-  margin: 100px auto;
-  padding: 100px 40px;
-  background-color: #fff;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form-div button {
+  margin-top: 12px;
+}
+
+.form-div input:focus {
+  outline: none !important;
+  border-color: #292924;
+}
+
+.logo {
+  width: 125px;
+  opacity: 0.9;
+  justify-self: center;
+  margin: 20px 0;
+}
+
+.meta {
+  font-size: 28px;
+  margin-top: 24px;
+}
+
+.meta-div {
+  background: #7C7C7C;
+  padding: 12px;
+}
+
+.meta span {
+  margin-top: 24px;
+  padding: 12px;
+}
+
+.meta-span {
+  font-size: 16px
+}
+
+.meta-btn {
+  position: relative;
+  margin-bottom: 24px;
+  margin-top: 12px;
+}
+
+.meta-btn:active {
+  brightness: 1.1;
+}
+
+.meta-btn:active:before {
+  content: 'Copied!';
+  position: absolute;
+  top: -50px;
+  background: #fff;
+  color: #000;
   border-radius: 10px;
-  line-height: 32px;
+  padding: 8px 6px;
 }
 
-.form__label {
-  font-size: 40px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  width: 90%
-  line-height: 32px;
-
+.meta-btn:active:after {
+  content: '';
+  position: absolute;
+  top: -17px;
+  background: #fff;
+  right: 22px;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
 }
 
-.form__input {
-  padding: 10px;
-  margin: 50px 0px;
-  font-size: 40px;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+.meta-btn:before,
+.meta-btn:after {
+  display: block;
 }
 
-.form__input:focus {
-  outline: none;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+.description-div {
+  position: relative;
+  padding:
+    40px;
+  border-radius: 0 8px 8px 0;
 }
 
-.form__button {
-  padding: 20px 20px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #fff;
-  background-color: #0077ff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+
+.copy-btn {
+  position: relative;
+  margin-bottom: 24px;
 }
 
-.form__button:hover {
-  background-color: #0066cc;
+.copy-btn:active {
+  brightness: 1.1;
 }
 
-@media only screen and (max-width: 768px) {
-  /* Increase the font size to 16px */
-  .form {
-    font-size: 40px;
-    color: red;
-    background: red;
-  }
-  .form__button {
-  background: red !important}
+.copy-btn:active:before {
+  content: 'Copied!';
+  position: absolute;
+  top: -50px;
+  background: #fff;
+  color: #000;
+  border-radius: 10px;
+  padding: 8px 6px;
+}
+
+.copy-btn:active:after {
+  content: '';
+  position: absolute;
+  top: -17px;
+  background: #fff;
+  right: 22px;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+}
+
+.copy-btn:before,
+.copy-btn:after {
+  display: block;
 }
