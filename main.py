@@ -12,7 +12,7 @@ def configure():
 
 configure()
 
-openai.api_key = "api_key"
+openai.api_key = os.getenv('api_key')
 
 app = Flask(__name__)
 
