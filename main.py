@@ -12,7 +12,7 @@ def configure():
 
 configure()
 
-openai.api_key = os.getenv('api_key')
+openai.api_key = "api_key"
 
 app = Flask(__name__)
 
@@ -49,7 +49,7 @@ def meta_text(prompt):
     data = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "Crează meta descrieri atragatoare, incadreaza-te in spatiul recomandat unei descrieri meta pentru produsele unui ecommerce. Raspunsul sa fie intre 20 si 22 de cuvinte"},
+            {"role": "system", "content": "Crează meta descrieri atragatoare, incadreaza-te in spatiul recomandat unei descrieri meta pentru produsele unui ecommerce. Obligatoriu ca raspunsul sa fie intre 20 si 22 de cuvinte si obligatoriu mereu sa folosesti si sa incluzi promptul in raspuns fara sa alterezi sau sa scoti niciun cuvant"},
             {"role": "user", "content": "Nike T-Shirt VI Dry"},
             {"role": "assistant",
              "content": "Descoperă confortul și respirabilitatea într-un singur tricou Nike T-Shirt VI Dry. Perfect pentru antrenamente sau activități zilnice."},
