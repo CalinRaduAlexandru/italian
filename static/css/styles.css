@@ -40,9 +40,19 @@ body {
   margin-top: 12px;
 }
 
+.prompt-details {
+margin-top: 6px;
+background: rgba(255,255,255,0.9)
+color: #ECECEC;
+}
+
+.prompt-details::placeholder {
+color: #C3C3C3;
+}
+
 .form-div input:focus {
   outline: none !important;
-  border-color: #292924;
+  border-color: #fff;
 }
 
 .logo {
@@ -81,31 +91,6 @@ body {
   brightness: 1.1;
 }
 
-.meta-btn:active:before {
-  content: 'Copied!';
-  position: absolute;
-  top: -50px;
-  background: #fff;
-  color: #000;
-  border-radius: 10px;
-  padding: 8px 6px;
-}
-
-.meta-btn:active:after {
-  content: '';
-  position: absolute;
-  top: -17px;
-  background: #fff;
-  right: 22px;
-  width: 10px;
-  height: 10px;
-  transform: rotate(45deg);
-}
-
-.meta-btn:before,
-.meta-btn:after {
-  display: block;
-}
 
 .description-div {
   position: relative;
@@ -122,30 +107,4 @@ body {
 
 .copy-btn:active {
   brightness: 1.1;
-}
-
-.copy-btn:active:before {
-  content: 'Copied!';
-  position: absolute;
-  top: -50px;
-  background: #fff;
-  color: #000;
-  border-radius: 10px;
-  padding: 8px 6px;
-}
-
-.copy-btn:active:after {
-  content: '';
-  position: absolute;
-  top: -17px;
-  background: #fff;
-  right: 22px;
-  width: 10px;
-  height: 10px;
-  transform: rotate(45deg);
-}
-
-.copy-btn:before,
-.copy-btn:after {
-  display: block;
 }

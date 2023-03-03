@@ -17,7 +17,7 @@ openai.api_key = os.getenv('api_key')
 app = Flask(__name__)
 
 
-def description(prompt):
+def description(prompt, details):
     data = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -25,7 +25,7 @@ def description(prompt):
             {"role": "user", "content": "Nike T-Shirt VI Dry"},
             {"role": "assistant",
              "content": "Nike T-Shirt VI Dry este o tricou sportiv pentru bărbați, proiectat pentru a oferi confort și performanță maximă în timpul activităților fizice. Materialul Dry-FIT al tricoului este realizat dintr-un amestec de poliester și bumbac, care îndepărtează rapid transpirația de pe piele, menținându-te uscat și confortabil în timpul antrenamentului. Designul modern și elegant, împreună cu logo-ul Nike vizibil pe piept, îl fac un produs atractiv și potrivit pentru a fi purtat în afara sălii de sport. Cu o gamă variată de culori și mărimi disponibile, acest tricou Nike este o alegere excelentă pentru cei care doresc să se simtă confortabil și să arate bine în timpul antrenamentelor lor."},
-            {"role": "user", "content": f"{prompt}"}
+            {"role": "user", "content": f"{prompt}, {details}"}
         ]
     )
     # print(data)
@@ -45,7 +45,7 @@ def description(prompt):
 
     return decoded_text
 
-def meta_text(prompt):
+def meta_text(prompt, details):
     data = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -53,7 +53,7 @@ def meta_text(prompt):
             {"role": "user", "content": "Nike T-Shirt VI Dry"},
             {"role": "assistant",
              "content": "Descoperă confortul și respirabilitatea într-un singur tricou Nike T-Shirt VI Dry. Perfect pentru antrenamente sau activități zilnice."},
-            {"role": "user", "content": f"{prompt}"}
+            {"role": "user", "content": f"{prompt}, {details}"}
         ]
     )
     data = data['choices'][0]['message']
@@ -77,8 +77,9 @@ def meta_text(prompt):
 def chat():
     if request.method == 'POST':
         prompt = request.form['prompt']
-        formatted_response = description(prompt)
-        meta = meta_text(prompt)
+        details = request.form['details']
+        formatted_response = description(prompt, details)
+        meta = meta_text(prompt, details)
         return render_template("index.html", answer=formatted_response, meta=meta, prompt=prompt)
     else:
         return render_template("index.html")
