@@ -41,13 +41,12 @@ body {
 }
 
 .prompt-details {
-margin-top: 6px;
-background: rgba(255,255,255,0.9)
-color: #ECECEC;
+  margin-top: 6px;
+  background: rgba(255, 255, 255, 0.9) color: #ECECEC;
 }
 
 .prompt-details::placeholder {
-color: #C3C3C3;
+  color: #C3C3C3;
 }
 
 .form-div input:focus {

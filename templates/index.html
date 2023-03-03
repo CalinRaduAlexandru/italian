@@ -29,7 +29,7 @@
                                pattern=".*\S+.*">
                         <input type="text" name="details" class="input-group prompt-details"
                                placeholder="Alte detalii... (optional)">
-                        <button type="submit" class="btn btn-dark btn-lg btn-block form__button">Crează descrierea
+                        <button type="submit" class="btn btn-dark btn-lg btn-block form__button">Creează descrierea
                         </button>
                     </div>
                 </form>
@@ -39,14 +39,16 @@
                         <span class="meta-span">{{meta}}</span>
                     </div>
                 </div>
-                <button type="button" title="Copied" class="btn btn-dark meta-btn" data-bs-toggle="tooltip" data-bs-placement="top"><i
+                <button type="button" title="Copied" class="btn btn-dark meta-btn" data-bs-toggle="tooltip"
+                        data-bs-placement="top"><i
                         class="fa fa-clone"
                         style="color: white; margin-right: 6px;"></i>Copy
                 </button>
             </div>
             <div class="col-md-9 description-div" style="background-color:rgb(220, 220, 220, 0.9); position: relative;">
-                <button class="btn btn-dark copy-btn" type="button" title="Copied" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa fa-clone"
-                                                         style="color: white; margin-right: 6px;"></i>Copy
+                <button class="btn btn-dark copy-btn" type="button" title="Copied" data-bs-toggle="tooltip"
+                        data-bs-placement="top"><i class="fa fa-clone"
+                                                   style="color: white; margin-right: 6px;"></i>Copy
                 </button>
                 <div id="text">
                     <div style="text-align:left;">
@@ -118,7 +120,9 @@
 </section>
 </body>
 <footer>
-    <p style="text-align:center;">Made with ♥️ in Iași.</p>
+    <p style="text-align:center; color: #c3c3c3;">Made with ♥️ by <a href="https://ripples.digital/" target="_blank">ripples.digital</a>
+    </p>
+    <p style="text-align:center; color: #807E7E;"> All rights reserved © Ripples <span id="footerData"></span></p>
 </footer>
 
 </html>
@@ -132,6 +136,14 @@
 <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
         integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
         crossorigin="anonymous"></script>
+
+<script>
+var data = new Date();
+data.setDate(data.getDate() - 24);
+var data_anterioara = data.toLocaleDateString("ro-RO");
+var options = { year: 'numeric' };
+document.getElementById("footerData").innerHTML = data.toLocaleDateString("ro-RO", options);
+</script>
 
 <script>
         $(document).ready(function() {
@@ -149,6 +161,9 @@
         });
 
 
+
+
+
 </script>
 
 <script>
@@ -162,6 +177,9 @@
                 }, 2000);
             });
         });
+
+
+
 
 </script>
 
@@ -184,6 +202,7 @@
 
 
 
+
 </script>
 
 <script>
@@ -198,6 +217,7 @@
     document.execCommand("copy");
     window.getSelection().removeAllRanges();
   });
+
 
 
 
